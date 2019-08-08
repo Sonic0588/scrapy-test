@@ -11,4 +11,10 @@ import scrapy
 class AceeeItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    HEADER = scrapy.Field() # "Article's title" - Заголовок
+    PUBDATE = scrapy.Field() # "2001-12-24" - Дата публикации
+    CATEGORIES = scrapy.Field() # ["marketing", "sales"] - Категории (обычно это раздел на сайте). Если их нет, можно оставить этот блок пустым
+    ARTICLE_TEXT = scrapy.Field() # Текст публикации, без кусков кода javascript, блоков рекламы и т.п.
+    TAGS = scrapy.Field() # ["lorem", "ipsum"] - Теги - обычно идут внизу страницы, часто начинаются с символа "#". Могут быть не на всех страницах. Например, здесь есть: https://aceee.org/blog/2019/07/hot-enough-you-utilities-need, а на соседних страницах нет.
+    HYPERLINKS = scrapy.Field() # ["http://bbc.com/important-article", "http://times.com/important-article"] # Cсылки на другие сайты
+
