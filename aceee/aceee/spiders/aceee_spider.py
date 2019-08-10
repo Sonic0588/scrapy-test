@@ -40,8 +40,8 @@ class AceeeSpider(scrapy.Spider):
         item['CATEGORIES'] = []
 
 
-        ARTICLE_TEXT = ' '.join(response.xpath('//div[@class="new_content_body"]//text()').extract())
-        item['ARTICLE_TEXT'] = ARTICLE_TEXT
+        # ARTICLE_TEXT = ' '.join(response.xpath('//div[@class="new_content_body"]//p//text()').extract())
+        # item['ARTICLE_TEXT'] = ARTICLE_TEXT
 
 
         TAGS = response.xpath('//div[@class="views-field views-field-term-node-tid"]/span[@class="field-content"]//text()').extract()
@@ -54,7 +54,8 @@ class AceeeSpider(scrapy.Spider):
         item['TAGS'] = TAGS
 
 
-        HYPERLINKS = response.xpath('//div[@class="new_content_body"]//a/@href').extract()
+        HYPERLINKS = set(response.xpath('//div[@class="new_content_body"]//p//a/@href').extract()) # отсеиваю повторяющиеся ссылки
+        HYPERLINKS = [el for el in HYPERLINKS if 'mailto' not in el] # удаляю ссылки на отправку письма
         item['HYPERLINKS'] = HYPERLINKS
         
         yield item
