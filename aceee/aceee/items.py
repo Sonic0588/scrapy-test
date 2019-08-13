@@ -9,8 +9,6 @@ import scrapy
 
 
 class AceeeItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
     HEADER = scrapy.Field() # "Article's title" - Заголовок
     PUBDATE = scrapy.Field() # "2001-12-24" - Дата публикации
     CATEGORIES = scrapy.Field() # ["marketing", "sales"] - Категории (обычно это раздел на сайте). Если их нет, можно оставить этот блок пустым
